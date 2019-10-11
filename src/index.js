@@ -24,9 +24,6 @@ export default function LanguageProvider({children, languages, language}) {
 export const useLanguage = () => useContext(LanguageContext);
 
 export const chooseStrings = (options) => {
-	console.log('L.currentValue', LanguageContext._currentValue);
-	console.log('Choosing for lang', LanguageContext, 'from optinos', options);
-
 	const [ {language} ] = LanguageContext._currentValue;
 
 	const chosenStrings = options[language];
