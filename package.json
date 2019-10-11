@@ -1,0 +1,33 @@
+{
+  "name": "react-language-kit",
+  "version": "0.1.0",
+  "description": "A React internationalization (i18n) helper with minimal footprint and ease of usage",
+  "main": "src/index.js",
+  "dependencies": {
+    "react": "^16.8",
+    "react-dom": "^16.8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/znti/react-i18n.git"
+  },
+  "keywords": [
+    "i18n",
+    "react-i18n-kit",
+    "translation",
+    "internationalization",
+    "react",
+    "reactjs",
+    "hooks",
+    "contextAPI"
+  ],
+  "author": "Rafael Zanetti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/znti/react-language-kit/issues"
+  },
+  "homepage": "https://github.com/znti/react-language-kit#readme"
+}
