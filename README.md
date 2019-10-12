@@ -9,7 +9,10 @@ This module can be Installed via npm
 
 ## How to use
 
-This module's usage depends on a `LanguageProvider` to set it up and an `useLanguage` hook to interact with its settings.
+The protagonist of this library is the `LanguageProvider` component. It provide the language settings to its component tree.<br>
+Once a provider is set, its children have access to the language settings through the `useActiveLanguage` and `useAvailableLanguages` hooks.
+
+Their details are listed below.
 
 ### LanguageProvider
 
@@ -18,38 +21,47 @@ This is also the place to declare the default language and language options avai
 
 ```jsx
 <LanguageProvider
-  language={'pt'}
-  languages={['en', 'pt']}
+  availableLanguages={['en', 'pt']}
+  activeLanguage={'en'}
 >
   <App />
 </LanguageProvider>
 ```
 
-### useLanguage
+### useActiveLanguage() and useAvailableLanguages()
 
-A hook to access the current language, languages available and change the current language.<br>
+Hooks to access and change the current language settings.<br>
+The value of `available languages` is an array of strings defining each language, while `active language` is a string contained in `available languages`.
 
-`useLanguage()` returns an array with the two entries: the current settings as its first element and a language setter as its last one.<br>
-The settings entry has the following structure:
-
-```json
-{
-  "language": "pt",
-  "options": [
-    "en", "pt"
-  ]
-}
-```
-
-_(there are preset values being shown just for completeness)_
-
-Being a hook, it can only be directly used inside functional components. It can be used as shown below.
+Being a hook, it can only be directly used inside functional components.<br>
+A sample of its usage is shown below.
 
 ```js
-const [ { language, options }, setLanguage ] = useLanguage();
+import React from 'react';
+import { useActiveLanguage, useAvailableLanguages } from 'react-language-kit';
+
+function App() {
+
+	const [ language, setLanguage ] = useActiveLanguage();
+	const [ languageOptions, setLanguageOptions ] = useAvailableLanguages();
+
+	return (
+		<div>
+      <p>The current language is {language} </p>
+
+      <select value={language} onChange={e => setLanguage(e.target.value)}>
+        {languageOptions.map(option => (<option key={option} value={option}>{option.toUpperCase()}</option>))}
+      </select>
+    </div>
+	)
+}
+
 ```
 
-## How to prepare the components that will have translations
+_(the initial values returned are the same ones sourced as `props` to the `LanguageProvider` component)_
+
+
+## How to prepare components with translations
 
 Components that should be aware of language changes can use the `useLanguage` hook to select the correct string resource file.<br>
 A resources file setup is shown below:
@@ -68,43 +80,41 @@ export default {
 }
 ```
 
-Having this resources map in hand, a selection can be made using the `language` property returned from the hook.
+Having this resources map in hand, a selection can be made using the `language` property returned from the hook as key.
 
 ## Usage sample
 
+The code below shows a way of settings up translation using React Language Kit
+
 ```jsx
 import React from 'react';
-import LanguageProvider, { useLanguage } from 'react-language-kit';
+import LanguageProvider, { useActiveLanguage, useAvailableLanguages } from 'react-language-kit';
 
 const i18nMap = {
   en: {
     description: 'Currently using',
-    options: 'Options',
   },
   pt: {
     description: 'Atualmente usando',
-    options: 'Opções',
   },
 }
 
 function App() {
-  const [ { language, options }, setLanguage ] = useLanguage();
-  const strings = i18nMap[language];
 
-  return (
-    <>
-      <p>
-        {strings.description}: {language}
-      </p>
+	const [ language, setLanguage ] = useActiveLanguage();
+	const [ languageOptions, setLanguageOptions ] = useAvailableLanguages();
 
-      <p>
-        {strings.options}
-        <select value={language} onChange={e => setLanguage(e.target.value)}>
-          {options.map(option => (<option key={option} value={option}>{option.toUpperCase()}</option>))}
-        </select>
-      </p>
-    </>
-  );
+	const strings = i18nMap[language];
+
+	return (
+		<div>
+      <p>{strings.description}: {language} </p>
+
+      <select value={language} onChange={e => setLanguage(e.target.value)}>
+        {languageOptions.map(option => (<option key={option} value={option}>{option.toUpperCase()}</option>))}
+      </select>
+    </div>
+	)
 }
 
 export default function BaseApp() {
@@ -118,4 +128,8 @@ export default function BaseApp() {
   );
 }
 ```
+
+## Sample projects using React Language Kit
+
+[Material UI i18n](https://github.com/znti/material-ui-i18n) is a boilerplate starter for i18n-aware SPAs using the [Material-UI](https://material-ui.com) components library
 
