@@ -2,10 +2,10 @@
   "name": "react-language-kit",
   "version": "0.1.4",
   "description": "A React internationalization (i18n) helper with minimal footprint and ease of usage",
-  "main": "index.js",
+  "main": "bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/babel src --out-file index.js"
+    "build": "./node_modules/.bin/babel src --out-file bundle.js"
   },
   "repository": {
     "type": "git",
