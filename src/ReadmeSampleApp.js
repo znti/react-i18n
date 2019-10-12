@@ -4,11 +4,9 @@ import LanguageProvider, { useActiveLanguage, useAvailableLanguages } from 'reac
 const i18nMap = {
   en: {
     description: 'Currently using',
-    options: 'Options',
   },
   pt: {
     description: 'Atualmente usando',
-    options: 'Opções',
   },
 }
 
@@ -17,9 +15,11 @@ function App() {
 	const [ language, setLanguage ] = useActiveLanguage();
 	const [ languageOptions, setLanguageOptions ] = useAvailableLanguages();
 
+	const strings = i18nMap[language];
+
 	return (
 		<div>
-      <p>The current language is {language} </p>
+      <p>{strings.description}: {language} </p>
 
       <select value={language} onChange={e => setLanguage(e.target.value)}>
         {languageOptions.map(option => (<option key={option} value={option}>{option.toUpperCase()}</option>))}
