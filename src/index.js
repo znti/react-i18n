@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import LanguageProvider, { useLanguage } from './react-language-kit';
+import LanguageProvider, { useLanguage } from 'react-language-kit';
 
 const i18nMap = {
   en: {
