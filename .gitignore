@@ -11,6 +11,7 @@
 # production
 /build
 bundle.js
+react-language-kit.js
 
 # misc
 .DS_Store
