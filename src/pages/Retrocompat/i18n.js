@@ -4,12 +4,13 @@ export default {
 		version: 'Version',
 		description: 'Currently using',
 		options: 'Options',
-		button: 'Shuffle languages!',
+		button: 'Revert languages list!',
 	},
 	pt: {
 		title: 'Teste de retrocompatibilidade',
 		version: 'Versão',
 		description: 'Atualmente usando',
-		options: 'Embaralhar idiomas!',
+		options: 'Opções',
+		button: 'Inverter lista de idiomas!',
 	},
 }
