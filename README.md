@@ -1,4 +1,4 @@
-# react-language-kit [![npm](https://img.shields.io/npm/v/react-language-kit)](https://www.npmjs.com/package/react-language-kit)
+# React Language Kit  [![npm](https://img.shields.io/npm/v/react-language-kit)](https://www.npmjs.com/package/react-language-kit)
 A React internationalization (i18n) helper with minimal footprint and ease of usage
 
 ## How to install
@@ -13,8 +13,7 @@ This module's usage depends on a `LanguageProvider` to set it up and an `useLang
 
 ### LanguageProvider
 
-A provider to be used as the root for the tree that will be aware of language changes.
-
+A provider to be used as the root for the tree that will be aware of language changes.<br>
 This is also the place to declare the default language and language options available for that component tree.
 
 ```jsx
@@ -28,11 +27,10 @@ This is also the place to declare the default language and language options avai
 
 ### useLanguage
 
-A hook to access the current language, languages available and change the current language.
+A hook to access the current language, languages available and change the current language.<br>
 
-`useLanguage()` returns an array with the two entries: the current settings as its first element and a language setter as its last one.
-
-The current settings has the following structure (the set values are just there for completeness):
+`useLanguage()` returns an array with the two entries: the current settings as its first element and a language setter as its last one.<br>
+The settings entry has the following structure:
 
 ```json
 {
@@ -43,16 +41,17 @@ The current settings has the following structure (the set values are just there 
 }
 ```
 
+_(there are preset values being shown just for completeness)_
+
 Being a hook, it can only be directly used inside functional components. It can be used as shown below.
 
 ```js
 const [ { language, options }, setLanguage ] = useLanguage();
 ```
 
-## How to prepare the components
+## How to prepare the components that will have translations
 
-Components that should be aware of language changes can use the `useLanguage` hook to select the correct string resource file.
-
+Components that should be aware of language changes can use the `useLanguage` hook to select the correct string resource file.<br>
 A resources file setup is shown below:
 
 ```js
