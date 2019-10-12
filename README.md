@@ -3,29 +3,9 @@ A React internationalization (i18n) helper with minimal footprint and ease of us
 
 ## How to install
 
-This module can be Installed through npm
+This module can be Installed via npm
 
 `npm i --save react-language-kit`
-
-## How to prepare the components
-
-Each component that will be aware of language changes must declare a `string` to `object` map.
-
-This map will be used to select the correct object based on the active language.
-
-```js
-/* The objects can be either imported from a JSON or defined inline */
-const ptStrings = require('./pt.json');
-const enStrings = {
-  content: 'This is the content description'
-};
-
-// This is the map for this component
-export default {
-  en: enStrings,
-  pt: ptStrings,
-}
-```
 
 ## How to use
 
@@ -35,7 +15,7 @@ This module's usage depends on a `LanguageProvider` to set it up and an `useLang
 
 A provider to be used as the root for the tree that will be aware of language changes.
 
-This component is also the place to declare the default language and language options available for that tree.
+This is also the place to declare the default language and language options available for that component tree.
 
 ```jsx
 <LanguageProvider
@@ -69,11 +49,31 @@ Being a hook, it can only be directly used inside functional components. It can 
 const [ { language, options }, setLanguage ] = useLanguage();
 ```
 
-## Sample
+## How to prepare the components
+
+Components that should be aware of language changes can use the `useLanguage` hook to select the correct string resource file.
+
+A resources file setup is shown below:
+
+```js
+/* The objects can be either imported from a JSON or defined inline */
+const ptStrings = require('./pt.json');
+const enStrings = {
+  content: 'This is the content description'
+};
+
+// This is the map for this component
+export default {
+  en: enStrings,
+  pt: ptStrings,
+}
+```
+
+Having this resources map in hand, a selection can be made using the `language` property returned from the hook.
+
+## Usage sample
 
 ```jsx
-// App.js file
-
 import React from 'react';
 import LanguageProvider, { useLanguage } from 'react-language-kit';
 
