@@ -1,6 +1,4 @@
-![npm](https://img.shields.io/npm/v/react-language-kit)
-
-# react-language-kit
+# react-language-kit [![npm](https://img.shields.io/npm/v/react-language-kit)](https://www.npmjs.com/package/react-language-kit)
 A React internationalization (i18n) helper with minimal footprint and ease of usage
 
 ## How to install
