@@ -19,10 +19,14 @@ export default function LanguageProvider({children, languages, language, activeL
 	let initialLanguages = ['en', 'pt'];
 	let initialLanguage = 'en';
 
-	if(availableLanguages && availableLanguages.prototype === Array && availableLanguages.length > 0
+	if(availableLanguages && Array.isArray(availableLanguages) && availableLanguages.length > 0
 			&& activeLanguage && availableLanguages.includes(activeLanguage)) {
 		initialLanguages = availableLanguages;
 		initialLanguage = activeLanguage;
+	} else {
+		console.warn('Skipping availableLanguages and activeLanguage props for misformat.\n',
+			'\tProps availableLanguage expects an array of strings.\n',
+			'\tProps activeLanguage expects a string contained in availableLanguage array.');
 	}
 
 	return (
