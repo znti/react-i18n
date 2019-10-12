@@ -1,3 +1,5 @@
+![npm](https://img.shields.io/npm/v/react-language-kit)
+
 # react-language-kit
 A React internationalization (i18n) helper with minimal footprint and ease of usage
 
@@ -36,10 +38,10 @@ The current settings has the following structure (the set values are just there 
 
 ```json
 {
-	"language": "pt",
-	"options": [
-		"en", "pt"
-	]
+  "language": "pt",
+  "options": [
+    "en", "pt"
+  ]
 }
 ```
 
@@ -90,7 +92,7 @@ const i18nMap = {
 
 function App() {
   const [ { language, options }, setLanguage ] = useLanguage();
-	const strings = i18nMap[language];
+  const strings = i18nMap[language];
 
   return (
     <>
