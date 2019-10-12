@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "react-scripts start",
-    "build": "./node_modules/.bin/babel src --out-file react-language-kit.js"
+    "build": "./node_modules/.bin/babel src/react-language-kit --out-file react-language-kit.js"
   },
   "repository": {
     "type": "git",

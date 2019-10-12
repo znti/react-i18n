@@ -1,4 +1,9 @@
-.babelrc
-/.git
-/src
+/node_modules
 
+.gitignore
+/.git
+
+.babelrc
+jsconfig.json
+/src
+/public

@@ -9,7 +9,7 @@ This module can be Installed via npm
 
 ## How to use
 
-The protagonist of this library is the `LanguageProvider` component. It provide the language settings to its component tree.<br>
+The protagonist of this library is the `LanguageProvider` component. It sources the language settings to its component tree.<br>
 Once a provider is set, its children have access to the language settings through the `useActiveLanguage` and `useAvailableLanguages` hooks.
 
 Their details are listed below.
@@ -17,7 +17,7 @@ Their details are listed below.
 ### LanguageProvider
 
 A provider to be used as the root for the tree that will be aware of language changes.<br>
-This is also the place to declare the default language and language options available for that component tree.
+This is also the place to declare the default language and available languages for that component tree.
 
 ```jsx
 <LanguageProvider
@@ -55,7 +55,6 @@ function App() {
     </div>
   )
 }
-
 ```
 
 _(the initial values returned are the same ones sourced as `props` to the `LanguageProvider` component)_
