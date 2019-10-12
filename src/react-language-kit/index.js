@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useState, useReducer } from 'react';
 
 const LanguageContext = createContext();
 
@@ -6,26 +6,10 @@ const ActiveLanguageContext = createContext();
 const AvailableLanguagesContext = createContext();
 
 const reducer = (state, language) => {
-	console.log('state', state, 'act', language);
 	if(state.options.includes(language)) {
 		return { ...state, language };
 	}
 };
-
-const availableLanguagesReducer = (state, languages) => {
-	return languages;
-};
-
-const activeLanguageReducer = (state, language) => {
-	return language;
-};
-
-const mreducer = (state, language) => {
-	console.log('OMG state', state, 'act', language);
-	return state
-}
-
-
 
 export default function LanguageProvider({children, languages, language, activeLanguage, availableLanguages}) {
 	
@@ -42,8 +26,8 @@ export default function LanguageProvider({children, languages, language, activeL
 	}
 
 	return (
-		<AvailableLanguagesContext.Provider value={useReducer(availableLanguagesReducer, initialLanguages)}>
-			<ActiveLanguageContext.Provider value={useReducer(activeLanguageReducer, initialLanguage)}>
+		<AvailableLanguagesContext.Provider value={useState(initialLanguages)}>
+			<ActiveLanguageContext.Provider value={useState(initialLanguage)}>
 				<LanguageContext.Provider value={useReducer(reducer, {language, options})}>
 					{children}
 				</LanguageContext.Provider>
@@ -55,4 +39,3 @@ export default function LanguageProvider({children, languages, language, activeL
 export const useLanguage = () => useContext(LanguageContext);
 export const useActiveLanguage = () => useContext(ActiveLanguageContext);
 export const useAvailableLanguages = () => useContext(AvailableLanguagesContext);
-
