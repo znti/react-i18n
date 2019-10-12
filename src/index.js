@@ -1,24 +1,45 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const LanguageContext = createContext();
+import LanguageProvider, { useLanguage } from './react-language-kit';
 
-const reducer = (state, language) => {
-	if(state.options.includes(language)) {
-		return { ...state, language };
-	}
-};
-
-export default function LanguageProvider({children, languages, language}) {
-	
-	const options = languages || [ 'en', 'pt' ];
-	language = language || 'en';
-
-	return (
-		<LanguageContext.Provider value={useReducer(reducer, {language, options})}>
-			{children}
-		</LanguageContext.Provider>
-	);
+const i18nMap = {
+  en: {
+    description: 'Currently using',
+    options: 'Options',
+  },
+  pt: {
+    description: 'Atualmente usando',
+    options: 'Opções',
+  },
 }
 
-export const useLanguage = () => useContext(LanguageContext);
+function App() {
+  const [ { language, options }, setLanguage ] = useLanguage();
+  const strings = i18nMap[language];
+
+  return (
+    <>
+      <p>
+        {strings.description}: {language}
+      </p>
+
+      <p>
+        {strings.options}:<br/>
+        <select value={language} onChange={e => setLanguage(e.target.value)}>
+          {options.map(option => (<option key={option} value={option}>{option.toUpperCase()}</option>))}
+        </select>
+      </p>
+    </>
+  );
+}
+
+ReactDOM.render(
+	<LanguageProvider
+		language={'pt'}
+		languages={['en', 'pt']}
+	>
+		<App />
+	</LanguageProvider>
+, document.getElementById('root'));
 
