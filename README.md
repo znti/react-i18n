@@ -14,21 +14,22 @@ Once a provider is set, its children have access to the language settings throug
 
 Their details are listed below.
 
-### LanguageProvider
+### The LanguageProvider component
 
 A provider to be used as the root for the tree that will be aware of language changes.<br>
 This is also the place to declare the default language and available languages for that component tree.
+If no `activeLanguage` is initialized, it defaults to the first element of `availableLanguages` array.
 
 ```jsx
 <LanguageProvider
-  availableLanguages={['en', 'pt']}
-  activeLanguage={'en'}
+  availableLanguages={['en-US', 'pt-BR']}
+  activeLanguage={'pt-BR'}
 >
   <App />
 </LanguageProvider>
 ```
 
-### useActiveLanguage() and useAvailableLanguages()
+### The `useActiveLanguage()` and `useAvailableLanguages()` hooks
 
 Hooks to access and change the current language settings.<br>
 The value of `available languages` is an array of strings defining each language, while `active language` is a string contained in `available languages`.
@@ -43,14 +44,14 @@ import { useActiveLanguage, useAvailableLanguages } from 'react-language-kit';
 function App() {
 
   const [ language, setLanguage ] = useActiveLanguage();
-  const [ languageOptions, setLanguageOptions ] = useAvailableLanguages();
+  const [ availableLanguages, setAvailableLanguages ] = useAvailableLanguages();
 
   return (
     <div>
       <p>The current language is {language} </p>
 
       <select value={language} onChange={e => setLanguage(e.target.value)}>
-        {languageOptions.map(option => (<option key={option} value={option}>{option.toUpperCase()}</option>))}
+        {availableLanguages.map(option => (<option key={option} value={option}>{option}</option>))}
       </select>
     </div>
   )
@@ -62,20 +63,21 @@ _(the initial values returned are the same ones sourced as `props` to the `Langu
 
 ## How to prepare components with translations
 
-Components that should be aware of language changes can use the `useLanguage` hook to select the correct string resource file.<br>
-A resources file setup is shown below:
+Components that should be aware of language changes can use the `useActiveLanguage` hook to select the correct string resource file.<br>
+A possible resources file setup is shown below:
 
 ```js
 /* The objects can be either imported from a JSON or defined inline */
-const ptStrings = require('./pt.json');
+const ptStrings = require('./pt-BR.json');
 const enStrings = {
+  welcome: ({ name }) => `Hello, ${name}. This is a parameterized string.`,
   content: 'This is the content description'
 };
 
 // This is the map for this component
 export default {
-  en: enStrings,
-  pt: ptStrings,
+  'en-US': enStrings,
+  'pt-BR': ptStrings,
 }
 ```
 
@@ -90,10 +92,12 @@ import React from 'react';
 import LanguageProvider, { useActiveLanguage, useAvailableLanguages } from 'react-language-kit';
 
 const i18nMap = {
-  en: {
+  'en-US': {
+    welcome: ({ name }) => `Welcome, ${name}!`,
     description: 'Currently using',
   },
-  pt: {
+  'pt-BR': {
+    welcome: ({ name }) => `Bem vindo, ${name}!`,
     description: 'Atualmente usando',
   },
 }
@@ -101,16 +105,17 @@ const i18nMap = {
 function App() {
 
   const [ language, setLanguage ] = useActiveLanguage();
-  const [ languageOptions, setLanguageOptions ] = useAvailableLanguages();
+  const [ availableLanguages, setAvailableLanguages ] = useAvailableLanguages();
 
   const strings = i18nMap[language];
 
   return (
     <div>
+      <p>{strings.welcome({ name: 'Mario' })}</p>
       <p>{strings.description}: {language} </p>
 
       <select value={language} onChange={e => setLanguage(e.target.value)}>
-        {languageOptions.map(option => (<option key={option} value={option}>{option.toUpperCase()}</option>))}
+        {availableLanguages.map(option => (<option key={option} value={option}>{option}</option>))}
       </select>
     </div>
   )
@@ -119,8 +124,8 @@ function App() {
 export default function BaseApp() {
   return (
     <LanguageProvider
-      language={'en'}
-      languages={['en', 'pt']}
+      availableLanguages={['en-US', 'pt-BR']}
+      activeLanguage={'pt-BR'}
     >
       <App />
     </LanguageProvider>
