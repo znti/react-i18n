@@ -14,9 +14,9 @@ Once a provider is set, its children have access to the language settings throug
 
 Their details are listed below.
 
-### The LanguageProvider component
+### The `LanguageProvider` component
 
-A provider to be used as the root for the tree that will be aware of language changes.<br>
+A [provider](https://reactjs.org/docs/context.html#contextprovider) to be used as the root for the tree that will be aware of language changes.<br>
 This is also the place to declare the default language and available languages for that component tree.
 If no `activeLanguage` is initialized, it defaults to the first element of `availableLanguages` array.
 
@@ -29,10 +29,11 @@ If no `activeLanguage` is initialized, it defaults to the first element of `avai
 </LanguageProvider>
 ```
 
-### The `useActiveLanguage()` and `useAvailableLanguages()` hooks
+### The `useActiveLanguage` and `useAvailableLanguages` hooks
 
-Hooks to access and change the current language settings.<br>
-The value of `available languages` is an array of strings defining each language, while `active language` is a string contained in `available languages`.
+Hooks to access and change the language settings.<br>
+`availableLanguages()` returns an array of strings defining each language, along with a setter function in case this array should be changed on runtime.<br>
+`activeLanguage()` returns a string identifying the selected language - also along with a setter function.
 
 Being a hook, it can only be directly used inside functional components.<br>
 A sample of its usage is shown below.
