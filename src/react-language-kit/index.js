@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useReducer } from 'react';
 
+const defaultLanguage = 'en-US';
+
 const LanguageContext = createContext();
 
 const ActiveLanguageContext = createContext();
@@ -11,22 +13,30 @@ const reducer = (state, language) => {
 	}
 };
 
+function showUsage() {
+	console.warn('Skipping availableLanguages and activeLanguage props for misformat.\n',
+		'\tProps availableLanguage expects an array of strings.\n',
+		'\tProps activeLanguage expects a string contained in availableLanguage array.');
+}
+
 export default function LanguageProvider({children, languages, language, activeLanguage, availableLanguages}) {
 	
-	const options = languages || [ 'en', 'pt' ];
-	language = language || 'en';
+	const options = languages || [ defaultLanguage ];
+	language = language || defaultLanguage;
 
-	let initialLanguages = ['en', 'pt'];
-	let initialLanguage = 'en';
+	let initialLanguages = [ defaultLanguage ];
+	let initialLanguage = defaultLanguage;
 
-	if(availableLanguages && Array.isArray(availableLanguages) && availableLanguages.length > 0
-			&& activeLanguage && availableLanguages.includes(activeLanguage)) {
+	if(availableLanguages && Array.isArray(availableLanguages) && availableLanguages.length > 0) {
 		initialLanguages = availableLanguages;
+	} else {
+		showUsage();
+	}
+
+	if(activeLanguage && availableLanguages.includes(activeLanguage)) {
 		initialLanguage = activeLanguage;
 	} else {
-		console.warn('Skipping availableLanguages and activeLanguage props for misformat.\n',
-			'\tProps availableLanguage expects an array of strings.\n',
-			'\tProps activeLanguage expects a string contained in availableLanguage array.');
+		initialLanguage = initialLanguages[0];
 	}
 
 	return (
