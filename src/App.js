@@ -6,11 +6,11 @@ export default function App() {
 	return (
 		<LanguageProvider
 			//v1.0.0
-			language={'pt'}
-			languages={['en', 'pt']}
+			language={'pt-BR'}
+			languages={['en-US', 'pt-BR']}
 			//v1.1.0 and above
-			activeLanguage={'pt'}
-			availableLanguages={['en', 'pt']}
+			activeLanguage={'pt-BR'}
+			availableLanguages={['en-US', 'pt-BR']}
 		>
 			<RetrocompatPage />
 		</LanguageProvider>
