@@ -101,6 +101,30 @@ export const useLanguage = () => useContext(LanguageContext);
 export const useActiveLanguage = () => useContext(ActiveLanguageContext);
 export const useAvailableLanguages = () => useContext(AvailableLanguagesContext);
 
+export const withLanguage = (Component) => (
+    (props) => (
+        <LanguageContext.Consumer>
+            {(context) => <Component language={context} {...props} />}
+        </LanguageContext.Consumer>
+    )
+);
+
+export const withActiveLanguage = (Component) => (
+    (props) => (
+        <ActiveLanguageContext.Consumer>
+            {(context) => <Component activeLanguage={context} {...props} />}
+        </ActiveLanguageContext.Consumer>
+    )
+);
+
+export const withAvailableLanguages = (Component) => (
+    (props) => (
+        <AvailableLanguagesContext.Consumer>
+            {(context) => <Component availableLanguages={context} {...props} />}
+        </AvailableLanguagesContext.Consumer>
+    )
+);
+
 /* For use at the top level of your React function (Hooks rules) */
 export const useTranslation = (dictionaries = {}, formats) => {
     const [language] = useActiveLanguage();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useActiveLanguage, useAvailableLanguages, useTranslation } from '../../react-language-kit';
+import { useActiveLanguage, useAvailableLanguages, useTranslation } from 'react-language-kit';
 
 import Section from './Section';
 import i18nMap from './i18n';
@@ -19,14 +19,10 @@ const formats = {
 
 export default function V1_2_0() {
     const [language, setLanguage] = useActiveLanguage();
-    const [options, setLanguageOptions] = useAvailableLanguages();
+    const [options] = useAvailableLanguages();
 
     /** New Hook! ('formats' is optional) */
     const t = useTranslation(i18nMap, formats);
-
-    const shuffleLanguages = () => {
-        setLanguageOptions((opts) => [...opts].reverse());
-    };
 
     return (
         <Section
@@ -43,10 +39,6 @@ export default function V1_2_0() {
                     </select>
 
                     <br />
-
-                    <button type="button" onClick={() => shuffleLanguages()}>
-                        {t('button')}
-                    </button>
 
                     <hr />
                     <h1>{t('formatArgs')}</h1>

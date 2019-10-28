@@ -7,6 +7,7 @@ export default {
         button: 'Revert languages list!',
 
         versionWithParam: 'Version (with params) {v}',
+        versionCompatibleCC: 'Version {v} (compatible with Class Components)',
 
         formatArgs: 'Formatted Arguments',
         'formatArgs.percentUsage': 'Percent Usage',
@@ -36,6 +37,7 @@ export default {
         button: 'Inverter lista de idiomas!',
 
         versionWithParam: 'Versão (com parametros) {v}',
+        versionCompatibleCC: 'Versão {v} (compatível com Class Components)',
 
         formatArgs: 'Argumentos formatados',
         'formatArgs.percentUsage': 'Uso de porcentagem',
