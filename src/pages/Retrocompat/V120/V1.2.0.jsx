@@ -1,8 +1,8 @@
 import React from 'react';
 import { useActiveLanguage, useAvailableLanguages, useTranslation } from 'react-language-kit';
 
-import Section from './Section';
-import i18nMap from './i18n';
+import Section from '../Section';
+import i18nMap from '../i18n';
 
 const version = { v: '1.2.0' };
 
