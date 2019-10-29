@@ -2,12 +2,12 @@ export default {
     'en-US': {
         title: 'Retrocompatibility test',
         version: 'Version',
-        description: 'Currently using',
-        options: 'Options',
+        description: 'Active language',
+        options: 'Languages available',
         button: 'Revert languages list!',
 
-        versionWithParam: 'Version (with params) {v}',
-        versionCompatibleCC: 'Version {v} (compatible with Class Components)',
+        versionWithHooks: 'Version {v} (using Hooks)',
+        versionWithClass: 'Version {v} (using Class)',
 
         formatArgs: 'Formatted Arguments',
         'formatArgs.percentUsage': 'Percent Usage',
@@ -32,12 +32,12 @@ export default {
     'pt-BR': {
         title: 'Teste de retrocompatibilidade',
         version: 'Versão',
-        description: 'Atualmente usando',
-        options: 'Opções',
+        description: 'Idioma ativo',
+        options: 'Idiomas disponíveis',
         button: 'Inverter lista de idiomas!',
 
-        versionWithParam: 'Versão (com parametros) {v}',
-        versionCompatibleCC: 'Versão {v} (compatível com Class Components)',
+        versionWithHooks: 'Versão {v} (usando Hooks)',
+        versionWithClass: 'Versão {v} (usando Class)',
 
         formatArgs: 'Argumentos formatados',
         'formatArgs.percentUsage': 'Uso de porcentagem',

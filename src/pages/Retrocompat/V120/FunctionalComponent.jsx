@@ -26,10 +26,11 @@ export default function V1_2_0() {
 
     return (
         <Section
-            title={t('versionWithParam', version)}
+            title={t('versionWithHooks', version)}
             description={`${t('description')}: ${language}`}
             options={(
                 <>
+                    <span><strong>{`${t('options')}: `}</strong></span>
                     <select value={language} onChange={(e) => setLanguage(e.target.value)}>
                         {
                             options.map((option) => (

@@ -20,10 +20,11 @@ class V120ClassComponent extends React.Component {
 
         return (
             <Section
-                title={t('versionCompatibleCC', version)}
+                title={t('versionWithClass', version)}
                 description={`${t('description')}: ${language}`}
                 options={(
                     <>
+                        <span><strong>{`${t('options')}: `}</strong></span>
                         <select value={language} onChange={(e) => setLanguage(e.target.value)}>
                             {
                                 options.map((option) => (

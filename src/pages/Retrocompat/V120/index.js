@@ -1,7 +1,7 @@
 
 import React from 'react';
-import FunctionalComponent from './V1.2.0';
-import ClassComponent from './V1.2.0_classComponent';
+import FunctionalComponent from './FunctionalComponent';
+import ClassComponent from './ClassComponent';
 
 export default function V120() {
 
