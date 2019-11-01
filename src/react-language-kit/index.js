@@ -139,3 +139,9 @@ export const useTranslationTo = (language = defaultLanguage, dictionaries = {}, 
         translateFormatting(language, dictionaries, term, parameters, formats)
     )
 );
+
+/* uses 'strings' according to active Language */
+export const useStrings = (dictionaries = {}) => {
+    const [language] = useActiveLanguage();
+    return dictionaries[language] || {};
+};
