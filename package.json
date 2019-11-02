@@ -1,6 +1,6 @@
 {
   "name": "react-language-kit",
-  "version": "1.2.0",
+  "version": "1.2.0-rc.0",
   "description": "A React internationalization (i18n) helper with minimal footprint and ease of usage",
   "main": "react-language-kit.js",
   "scripts": {
